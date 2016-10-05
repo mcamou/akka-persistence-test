@@ -5,9 +5,9 @@ import de.heikoseeberger.sbtheader.HeaderPlugin.autoImport._
 import de.heikoseeberger.sbtheader.license._
 import org.scalafmt.sbt.ScalaFmtPlugin
 import org.scalafmt.sbt.ScalaFmtPlugin.autoImport._
+import sbt.Keys._
 import sbt._
 import sbt.plugins.JvmPlugin
-import sbt.Keys._
 
 object Build extends AutoPlugin {
 
@@ -19,7 +19,7 @@ object Build extends AutoPlugin {
   override def projectSettings =
     reformatOnCompileSettings ++
     Vector(
-           // Core settings
+            // Core settings
            organization := "com.tecnoguru", 
            licenses += ("MIT", url("https://opensource.org/licenses/MIT")),
            mappings.in(Compile, packageBin) += baseDirectory.in(ThisBuild).value / "LICENSE" -> "LICENSE",
@@ -32,17 +32,17 @@ object Build extends AutoPlugin {
              "-target:jvm-1.8",
              "-encoding", "UTF-8"
            ),
-           unmanagedSourceDirectories.in(Compile) := Vector(scalaSource.in(Compile).value),
-           unmanagedSourceDirectories.in(Test) := Vector(scalaSource.in(Test).value),
+            //unmanagedSourceDirectories.in(Compile) := Vector(scalaSource.in(Compile).value),
+            //unmanagedSourceDirectories.in(Test) := Vector(scalaSource.in(Test).value),
 
-           // scalafmt settings
+            // scalafmt settings
            formatSbtFiles := false,
            scalafmtConfig := Some(baseDirectory.in(ThisBuild).value / ".scalafmt.conf"),
 
-           // Git settings
+            // Git settings
            git.useGitDescribe := true,
 
-           // Header settings
+            // Header settings
            headers := Map("scala" -> MIT("2016", "Mario Camou"))
     )
 }

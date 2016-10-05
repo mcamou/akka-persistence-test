@@ -22,9 +22,8 @@
 package com.tecnoguru.akka.persistence
 
 import akka.actor.{ ActorSystem, PoisonPill }
-import com.tecnoguru.akka.persistence.TestActor.{ Add, GetHistory }
+import com.tecnoguru.akka.persistence.TestActorJava.{ Add, GetHistory }
 
-import scala.concurrent.Future
 import scala.util.Random
 
 /**
@@ -34,7 +33,7 @@ object Main {
   def main(args: Array[String]): Unit = {
     val system = ActorSystem("test-persistence")
     var actors = (1 to 10 map { n: Int =>
-      system.actorOf(TestActor.props(n.toString), n.toString)
+      system.actorOf(TestActorJava.props(n.toString), n.toString)
     }).toSet
 
     Thread.sleep(5000)
@@ -55,10 +54,10 @@ object Main {
         val actor = actors.toList(rnd.nextInt(actors.size))
         rnd.nextInt(2) match {
           case 0 =>
-            actor ! Add(s"Element $n")
+            actor ! new Add(s"Element $n")
 
           case 1 =>
-            actor ! GetHistory
+            actor ! new GetHistory()
 
           case 2 =>
             actors -= actor

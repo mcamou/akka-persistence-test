@@ -23,12 +23,12 @@ package com.tecnoguru.akka.persistence
 
 import akka.actor.Props
 import akka.persistence._
-import com.tecnoguru.akka.persistence.TestActor.{ Add, GetHistory, Snapshot }
+import com.tecnoguru.akka.persistence.TestActorScala.{ Add, GetHistory, Snapshot }
 
 /**
   * Created by mario on 4/10/16.
   */
-class TestActor(id: String) extends PersistentActor {
+class TestActorScala(id: String) extends PersistentActor {
   var sequence: Int         = 0
   var history: List[String] = Nil
 
@@ -103,10 +103,10 @@ class TestActor(id: String) extends PersistentActor {
   override val persistenceId: String = id
 }
 
-object TestActor {
+object TestActorScala {
   case class Add(newValue: String)
   case object GetHistory
   case class Snapshot(sequence: Int, history: List[String])
 
-  def props(id: String) = Props(classOf[TestActor], id)
+  def props(id: String) = Props(classOf[ TestActorScala ], id)
 }
