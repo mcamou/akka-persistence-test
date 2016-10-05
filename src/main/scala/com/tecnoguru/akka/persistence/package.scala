@@ -1,7 +1,7 @@
 
-package com.tecnoguru.akka.persistence
+package com.tecnoguru.akka
 
-package object test {
+package object persistence {
 
   type Traversable[+A] = scala.collection.immutable.Traversable[A]
   type Iterable[+A]    = scala.collection.immutable.Iterable[A]
