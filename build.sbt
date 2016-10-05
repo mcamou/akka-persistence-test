@@ -3,5 +3,7 @@ lazy val `akka-persistence-test` =
 
 libraryDependencies ++= Library.all
 
+cancelable in Global := true
+
 initialCommands := """|import com.tecnoguru.akka.persistence.test._
                       |""".stripMargin

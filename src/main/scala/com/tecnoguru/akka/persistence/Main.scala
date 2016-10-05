@@ -31,13 +31,16 @@ import scala.util.Random
   */
 object Main {
   def main(args: Array[String]): Unit = {
+    println("Starting");
     val system = ActorSystem("test-persistence")
     var actors = (1 to 10 map { n: Int =>
+      println(s"starting actor $n")
       system.actorOf(TestActorJava.props(n.toString), n.toString)
     }).toSet
 
-    Thread.sleep(5000)
+    Thread.sleep(1000)
 
+    println("starting bombardment")
     val rnd = new Random
 
     1 to 200 foreach { n =>
